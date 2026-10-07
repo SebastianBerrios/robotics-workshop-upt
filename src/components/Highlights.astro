@@ -1,0 +1,27 @@
+---
+const items = [
+  { t: 'Aprendizaje práctico', d: 'Construyes y pruebas tu propio robot.', i: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z' },
+  { t: 'Trabajo en equipo', d: 'Colaboras y compartes ideas con tus compañeros.', i: 'M16 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM8 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5' },
+  { t: 'Retos y competencias', d: 'Cierra el día con una competencia amistosa.', i: 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3' },
+  { t: 'Introducción a la robótica', d: 'Electrónica y programación desde cero.', i: 'M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2' },
+];
+---
+<section class="hl">
+  <div class="container grid">
+    {items.map((x) => (
+      <div class="item reveal">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={x.i} /></svg>
+        <p class="t">{x.t}</p>
+        <p>{x.d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .hl { background: var(--bg-2); border-block: 1px solid var(--line); padding: 36px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .item { display: flex; flex-direction: column; gap: 6px; }
+  .item svg { color: var(--cyan); margin-bottom: 4px; }
+  .t { font-family: var(--font-display); font-weight: 600; color: var(--text); font-size: 1.15rem; }
+  p:not(.t) { color: var(--muted); font-size: 0.95rem; }
+</style>

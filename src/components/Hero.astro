@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero-students.jpg';
+import { info } from '../data/workshops';
+---
+<section id="inicio" class="hero">
+  <svg class="circuit" viewBox="0 0 400 200" aria-hidden="true" fill="none" stroke="#22d3ee" stroke-width="1.5">
+    <path d="M0 30h120l20 20h80M0 80h60l20-20h100M0 140h90l30 30h140" opacity=".5"/>
+    <circle cx="220" cy="50" r="4" fill="#22d3ee"/><circle cx="180" cy="60" r="4" fill="#22d3ee"/><circle cx="260" cy="170" r="4" fill="#22d3ee"/>
+  </svg>
+  <div class="container grid">
+    <div class="content">
+      <span class="badge yellow"><span class="dot"></span> Inscripciones próximamente</span>
+      <h1>Talleres de <span>Robótica</span></h1>
+      <p class="lead">Arma, programa y compite con tu propio robot ESP32. Dirigido a estudiantes de colegio, en la Universidad Privada de Tacna.</p>
+      <ul class="chips">
+        <li class="badge">{info.price}</li>
+        <li class="badge">{info.maxStudents} cupos por taller</li>
+        <li class="badge">ESP32 · Sensores · WiFi</li>
+      </ul>
+      <a href="#talleres" class="btn">Conoce los talleres</a>
+    </div>
+    <figure class="frame">
+      <Image src={hero} alt="Estudiantes armando un robot con la Universidad Privada de Tacna de fondo" loading="eager" widths={[600, 900]} sizes="(max-width: 860px) 100vw, 520px" />
+      <figcaption class="badge yellow">¡Tu futuro empieza aquí!</figcaption>
+    </figure>
+  </div>
+</section>
+<style>
+  .hero { position: relative; overflow: hidden; isolation: isolate; padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 96px);
+    background: radial-gradient(ellipse at 85% 20%, rgba(20,80,200,.55), transparent 55%), radial-gradient(ellipse at 0% 100%, rgba(34,211,238,.14), transparent 50%), var(--bg); }
+  .circuit { position: absolute; left: 0; bottom: 4%; width: min(480px, 60vw); z-index: -1; opacity: .6; }
+  .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .content { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+  h1 { font-size: clamp(2.4rem, 7.2vw, 4.4rem); font-weight: 700; white-space: nowrap; text-transform: uppercase; }
+  h1 span { display: block; color: var(--cyan); text-shadow: 0 0 30px rgba(34,211,238,.55); }
+  .lead { max-width: 50ch; font-size: clamp(1.05rem, 2.2vw, 1.22rem); }
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; }
+  .frame { position: relative; margin: 0; border-radius: 24px; padding: 5px; background: linear-gradient(135deg, var(--cyan), var(--blue)); box-shadow: 0 0 60px rgba(34,211,238,.28); transform: rotate(1.5deg); }
+  .frame img { border-radius: 20px; width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; object-position: 28% center; }
+  .frame figcaption { position: absolute; left: 18px; bottom: -14px; font-style: italic; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .frame { transform: none; } }
+</style>

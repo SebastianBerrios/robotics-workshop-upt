@@ -1,0 +1,82 @@
+---
+import { workshops, info, registrationUrl } from '../data/workshops';
+---
+<section id="talleres" class="section">
+  <div class="container">
+    <p class="eyebrow">Dos talleres, un mismo reto</p>
+    <h2 class="section-title">Elige tu robot</h2>
+    <p class="section-lead">Cada taller es gratuito, dura una mañana y comparte la misma base electromecánica; cambia la lógica de control.</p>
+
+    <div class="cards">
+      {workshops.map((w) => (
+        <article class="card reveal">
+          <div class="art" aria-hidden="true">
+            {w.id === 'sumo' ? (
+              <svg viewBox="0 0 240 150" fill="none">
+                <ellipse cx="120" cy="115" rx="105" ry="22" fill="#0a1f52" stroke="#22d3ee" stroke-width="2"/>
+                <ellipse cx="120" cy="115" rx="70" ry="13" stroke="#facc15" stroke-width="1.5" stroke-dasharray="5 5"/>
+                <rect x="78" y="62" width="70" height="40" rx="8" fill="#1450c8" stroke="#22d3ee" stroke-width="2"/>
+                <path d="M148 98l36-12v26l-36-4z" fill="#facc15"/>
+                <circle cx="94" cy="104" r="11" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <circle cx="132" cy="104" r="11" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <rect x="98" y="48" width="22" height="14" rx="3" fill="#04122e" stroke="#22d3ee"/>
+                <path d="M54 40a28 28 0 0 1 28-20M46 30a40 40 0 0 1 40-28" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 240 150" fill="none">
+                <path d="M0 125h240" stroke="#0a1f52" stroke-width="10"/>
+                <path d="M205 125l10-34 10 34z" fill="#fb923c"/><rect x="203" y="124" width="24" height="5" fill="#fb923c"/>
+                <rect x="40" y="70" width="84" height="38" rx="8" fill="#1450c8" stroke="#22d3ee" stroke-width="2"/>
+                <circle cx="62" cy="112" r="12" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <circle cx="106" cy="112" r="12" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <circle cx="136" cy="84" r="9" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <circle cx="136" cy="102" r="9" fill="#04122e" stroke="#22d3ee" stroke-width="2"/>
+                <g stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" fill="none">
+                  <path class="w1" d="M152 78q10 15 0 30"/><path class="w2" d="M164 70q16 23 0 46"/><path class="w3" d="M176 62q22 31 0 62"/>
+                </g>
+              </svg>
+            )}
+          </div>
+          <div class="body">
+            <h3>{w.name}</h3>
+            <p class="tag">{w.tagline}</p>
+            <p class="desc">{w.description}</p>
+            <h4>Qué aprenderás</h4>
+            <ul class="list">{w.learn.map((l) => <li>{l}</li>)}</ul>
+            <p class="challenge"><strong>Reto final:</strong> {w.challenge}</p>
+            <h4>Fechas</h4>
+            {w.dates.length ? (
+              <ul class="dates">{w.dates.map((d) => <li><time datetime={d.iso}>{d.label}</time></li>)}</ul>
+            ) : (
+              <p><span class="badge yellow">Fechas próximamente</span></p>
+            )}
+            <p class="meta">{info.time} · {info.venue} · {info.price} · Máx. {info.maxStudents} alumnos</p>
+            {registrationUrl
+              ? <a class="btn" href={registrationUrl}>Inscríbete</a>
+              : <span class="btn disabled" role="status">Próximamente · Cupos limitados</span>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 28px; margin-top: 44px; }
+  .card { background: linear-gradient(180deg, var(--panel), rgba(10, 31, 82, 0.6)); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+  .art { background: radial-gradient(circle at 50% 120%, rgba(34,211,238,.25), transparent 65%), var(--bg-2); padding: 24px; border-bottom: 1px solid var(--line); }
+  .art svg { width: min(100%, 320px); margin-inline: auto; }
+  .w1 { animation: wave 2s infinite; transform-origin: 140px 93px; }
+  .w2 { animation: wave 2s .3s infinite; transform-origin: 140px 93px; }
+  .w3 { animation: wave 2s .6s infinite; transform-origin: 140px 93px; }
+  .body { padding: 26px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; flex: 1; }
+  h3 { font-size: 1.6rem; }
+  .tag { color: var(--cyan); font-weight: 500; }
+  .desc { color: var(--muted); }
+  h4 { font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: .14em; color: var(--yellow); margin: 8px 0 0; }
+  .list { margin: 0; padding-left: 20px; color: var(--text); }
+  .list li { margin: 3px 0; }
+  .dates { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .dates li { padding: 6px 12px; border: 1px solid var(--cyan); border-radius: 8px; font-family: var(--font-display); font-weight: 600; font-size: .95rem; }
+  .meta { color: var(--muted); font-size: .88rem; }
+  .btn { margin-top: auto; }
+</style>

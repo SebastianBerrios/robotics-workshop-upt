@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Highlights from '../components/Highlights.astro';
+import Workshops from '../components/Workshops.astro';
+import Schedule from '../components/Schedule.astro';
+import Instructor from '../components/Instructor.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { workshops, info } from '../data/workshops';
+
+const sumo = workshops.find((w) => w.id === 'sumo')!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EventSeries',
+  name: 'Taller de Robótica: Mini Robot Sumo',
+  description: sumo.description,
+  isAccessibleForFree: true,
+  location: { '@type': 'Place', name: info.venue, address: { '@type': 'PostalAddress', addressLocality: 'Tacna', addressCountry: 'PE' } },
+  organizer: { '@type': 'Organization', name: info.university },
+  subEvent: sumo.dates.map((d) => ({
+    '@type': 'Event',
+    name: 'Taller de Robótica: Mini Robot Sumo',
+    startDate: `${d.iso}T09:00:00-05:00`,
+    endDate: `${d.iso}T13:00:00-05:00`,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: { '@type': 'Place', name: info.venue, address: 'Tacna, Perú' },
+  })),
+};
+---
+<Layout
+  title="Talleres de Robótica UPT | Mini Robot Sumo y Robot Evasor"
+  description="Talleres gratuitos de robótica para estudiantes de colegio en la Universidad Privada de Tacna. Arma y programa tu robot ESP32. Cupos limitados."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <Header />
+  <main>
+    <Hero />
+    <Highlights />
+    <Workshops />
+    <Schedule />
+    <Instructor />
+    <Faq />
+    <Cta />
+  </main>
+</Layout>

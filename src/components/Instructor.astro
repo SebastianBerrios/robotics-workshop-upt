@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import photo from '../assets/instructor.jpg';
+---
+<section id="instructor" class="section">
+  <div class="container wrap">
+    <div class="photo reveal">
+      <Image src={photo} alt="Ing. Sebastián Berrios Gómez, instructor del taller" widths={[400, 600]} sizes="(max-width: 800px) 80vw, 380px" />
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Tu instructor</p>
+      <h2 class="section-title">Sebastián Berrios Gómez</h2>
+      <p class="role">Ingeniero Electrónico · CIP 299755 · Egresado UPT, primer puesto</p>
+      <p>Más de 4 años de experiencia entre telecomunicaciones, automatización con microcontroladores y desarrollo Fullstack, incluyendo proyectos para instituciones públicas como el Ministerio de Educación. Esa doble formación en hardware y software le permite guiarte tanto en el ensamblaje de los robots como en la lógica de programación que los mueve.</p>
+      <p>Cofundador y co-organizador de <strong>GDG Tacna</strong> (Google Developer Groups). Organizó el <strong>DevFest Tacna 2025</strong>, que reunió asistentes de Chile, Bolivia y varias ciudades del Perú, y ha sido orador en charlas de tecnología e IA para escolares y universitarios.</p>
+      <ul class="tags">
+        <li>GDG Tacna</li><li>DevFest Tacna 2025</li><li>Build with AI</li><li>Maestría en Ingeniería de Software</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<style>
+  .wrap { display: grid; grid-template-columns: minmax(240px, 380px) 1fr; gap: clamp(28px, 6vw, 64px); align-items: center; }
+  .photo { position: relative; border-radius: 24px; padding: 6px; background: linear-gradient(135deg, var(--cyan), var(--blue)); box-shadow: 0 0 50px rgba(34,211,238,.25); }
+  .photo img { border-radius: 19px; width: 100%; height: auto; }
+  .wrap > div:last-child { display: flex; flex-direction: column; gap: 14px; }
+  .role { color: var(--cyan); font-weight: 500; }
+  p { color: var(--muted); }
+  p strong { color: var(--text); }
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 6px 0 0; }
+  .tags li { padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: .85rem; background: var(--panel); }
+  @media (max-width: 800px) { .wrap { grid-template-columns: 1fr; } .photo { max-width: 340px; } }
+</style>

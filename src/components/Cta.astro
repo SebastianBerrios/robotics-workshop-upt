@@ -1,0 +1,29 @@
+---
+import { info, registrationUrl } from '../data/workshops';
+---
+<section class="cta">
+  <div class="container inner reveal">
+    <h2>¡Despierta tu creatividad e innovación!</h2>
+    <p>Tu futuro en la ingeniería empieza aquí. Los cupos son limitados.</p>
+    {registrationUrl
+      ? <a class="btn" href={registrationUrl}>Inscríbete gratis</a>
+      : <span class="btn disabled" role="status">Próximamente · Cupos limitados</span>}
+    <p class="small">Informes: <a href={`mailto:${info.email}`}>{info.email}</a></p>
+  </div>
+</section>
+<footer>
+  <div class="container foot">
+    <span>{info.university} · Escuela Profesional de Ingeniería Electrónica</span>
+    <span>© 2026 Talleres de Robótica</span>
+  </div>
+</footer>
+<style>
+  .cta { padding: clamp(64px, 10vw, 112px) 0; background: radial-gradient(circle at 50% 0%, rgba(34,211,238,.22), transparent 60%), linear-gradient(135deg, #0b2a6b, #061436); text-align: center; }
+  .inner { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  h2 { font-size: clamp(2rem, 5.5vw, 3.6rem); font-style: italic; }
+  .inner > p { color: var(--muted); font-size: 1.1rem; }
+  .small { font-size: .95rem !important; }
+  .small a { color: var(--cyan); }
+  footer { background: #040d26; border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); font-size: .88rem; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+</style>

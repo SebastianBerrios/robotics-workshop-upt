@@ -1,0 +1,27 @@
+---
+import { schedule } from '../data/workshops';
+---
+<section id="cronograma" class="section alt">
+  <div class="container">
+    <p class="eyebrow">Una mañana completa</p>
+    <h2 class="section-title">Así será tu día</h2>
+    <ol class="tl">
+      {schedule.map((s) => (
+        <li class="reveal">
+          <time>{s.time}</time>
+          <div><h3>{s.title}</h3><p>{s.text}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+<style>
+  .alt { background: linear-gradient(180deg, var(--bg), var(--bg-2)); }
+  .tl { list-style: none; margin: 40px 0 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); display: grid; gap: 28px; max-width: 760px; }
+  li { position: relative; display: grid; grid-template-columns: 150px 1fr; gap: 16px; }
+  li::before { content: ''; position: absolute; left: -29px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); }
+  time { font-family: var(--font-display); font-weight: 700; color: var(--cyan); font-size: 1.05rem; }
+  h3 { font-size: 1.2rem; }
+  p { color: var(--muted); margin-top: 4px; }
+  @media (max-width: 560px) { li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
